@@ -3,9 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.34916.146
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicLibrary.Server", "MusicLibrary.Server\MusicLibrary.Server.csproj", "{14818891-FD78-4EC9-B4B4-64305BAD15D9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MusicLibrary.WebAPI", "MusicLibrary.Server\MusicLibrary.WebAPI.csproj", "{14818891-FD78-4EC9-B4B4-64305BAD15D9}"
 EndProject
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "musiclibrary.client", "musiclibrary.client\musiclibrary.client.esproj", "{DD5BC904-2305-4CDA-8102-8AD1B077AE40}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicLibrary.Domain", "MusicLibrary.Domain\MusicLibrary.Domain.csproj", "{6B233584-305E-4919-9F20-1B4C15260216}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicLibrary.Application", "MusicLibrary.Application\MusicLibrary.Application.csproj", "{9E9B808C-EFC6-48D8-B9BD-87093E7FE241}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicLibrary.Infrastructure", "MusicLibrary.Infrastructure\MusicLibrary.Infrastructure.csproj", "{AD5F6880-EABA-4646-A195-A47B31D10EC4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,6 +29,18 @@ Global
 		{DD5BC904-2305-4CDA-8102-8AD1B077AE40}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DD5BC904-2305-4CDA-8102-8AD1B077AE40}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DD5BC904-2305-4CDA-8102-8AD1B077AE40}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{6B233584-305E-4919-9F20-1B4C15260216}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B233584-305E-4919-9F20-1B4C15260216}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B233584-305E-4919-9F20-1B4C15260216}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B233584-305E-4919-9F20-1B4C15260216}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E9B808C-EFC6-48D8-B9BD-87093E7FE241}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E9B808C-EFC6-48D8-B9BD-87093E7FE241}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E9B808C-EFC6-48D8-B9BD-87093E7FE241}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E9B808C-EFC6-48D8-B9BD-87093E7FE241}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD5F6880-EABA-4646-A195-A47B31D10EC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD5F6880-EABA-4646-A195-A47B31D10EC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD5F6880-EABA-4646-A195-A47B31D10EC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD5F6880-EABA-4646-A195-A47B31D10EC4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -17,9 +17,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MusicLibrary.Application\MusicLibrary.Application.csproj" />
     <ProjectReference Include="..\musiclibrary.client\musiclibrary.client.esproj">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+    <ProjectReference Include="..\MusicLibrary.Infrastructure\MusicLibrary.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
