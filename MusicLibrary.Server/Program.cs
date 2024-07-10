@@ -1,11 +1,14 @@
 using MusicLibrary.Infrastructure.Extensions;
 using MusicLibrary.Infrastructure.Seeders;
+using MusicLibrary.WebAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+
+builder.Services.AddScoped<IWeatherForecastService, WeatherForecastService>();
 
 builder.Services.AddInfrastructe(builder.Configuration);
 

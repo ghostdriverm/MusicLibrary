@@ -1,13 +1,18 @@
-﻿namespace MusicLibrary.Domain.Entities;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace MusicLibrary.Domain.Entities;
 
 public class Album
 {
-    public Guid AlbumId { get; set; }
-    public Guid ArtistId { get; set; }
+    public Guid? AlbumId { get; set; }
     public string Title { get; set; } = default!;
-    public List<Song> Songs { get; set; } = new();
     public string Description { get; set; } = default!;
 
-    public Artist Artist { get; set; } = new();
+    public Guid? ArtistId { get; set; }
+    public Artist Artist { get; set; }
+
+    public ICollection<Song> Songs { get; set; } = new List<Song>();
+
     
 }

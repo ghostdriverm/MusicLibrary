@@ -12,7 +12,7 @@ using MusicLibrary.Infrastructure.Persistence;
 namespace MusicLibrary.Infrastructure.Migrations
 {
     [DbContext(typeof(MusicLibraryDbContext))]
-    [Migration("20240710110545_Initial")]
+    [Migration("20240710172224_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -27,11 +27,11 @@ namespace MusicLibrary.Infrastructure.Migrations
 
             modelBuilder.Entity("MusicLibrary.Domain.Entities.Album", b =>
                 {
-                    b.Property<Guid>("AlbumId")
+                    b.Property<Guid?>("AlbumId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("ArtistId")
+                    b.Property<Guid?>("ArtistId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
@@ -66,7 +66,7 @@ namespace MusicLibrary.Infrastructure.Migrations
 
             modelBuilder.Entity("MusicLibrary.Domain.Entities.Song", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("SongId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -84,7 +84,7 @@ namespace MusicLibrary.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("SongId");
 
                     b.HasIndex("AlbumId");
 
@@ -98,8 +98,7 @@ namespace MusicLibrary.Infrastructure.Migrations
                     b.HasOne("MusicLibrary.Domain.Entities.Artist", "Artist")
                         .WithMany("Albums")
                         .HasForeignKey("ArtistId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("Artist");
                 });
@@ -111,7 +110,7 @@ namespace MusicLibrary.Infrastructure.Migrations
                         .HasForeignKey("AlbumId");
 
                     b.HasOne("MusicLibrary.Domain.Entities.Artist", "Artist")
-                        .WithMany()
+                        .WithMany("Songs")
                         .HasForeignKey("ArtistId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -129,6 +128,8 @@ namespace MusicLibrary.Infrastructure.Migrations
             modelBuilder.Entity("MusicLibrary.Domain.Entities.Artist", b =>
                 {
                     b.Navigation("Albums");
+
+                    b.Navigation("Songs");
                 });
 #pragma warning restore 612, 618
         }
