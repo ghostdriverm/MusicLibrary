@@ -1,8 +1,6 @@
-﻿
-namespace MusicLibrary.Infrastructure.Seeders
+﻿namespace MusicLibrary.Infrastructure.Seeders;
+
+public interface IMusicLibrarySeeder
 {
-    public interface IMusicLibrarySeeder
-    {
-        Task Seed();
-    }
+    Task Seed();
 }

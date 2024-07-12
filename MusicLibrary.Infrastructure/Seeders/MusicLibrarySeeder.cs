@@ -9,71 +9,90 @@ internal class MusicLibrarySeeder(MusicLibraryDbContext dbContext) : IMusicLibra
 {
     public async Task Seed()
     {
-        // 1. Load JSON data from a file or string
-        string jsonData = File.ReadAllText("data.json");
-
-        if (jsonData != null)
+        if (dbContext.Database.GetPendingMigrations().Any())
         {
-            // 2. Deserialize JSON into a list of dictionaries
-            var musicData = JsonSerializer.Deserialize<List<Dictionary<string, object>>>(jsonData);
+            await dbContext.Database.MigrateAsync();
+        }
 
-            // 3. Process each artist's data
-            if (musicData == null)
+        if (await dbContext.Database.CanConnectAsync())
+        {
+            if (!dbContext.Artists.Any())
             {
-                return;
-            }
-            foreach (var artistData in musicData)
-            {
+                // 1. Load JSON data from a file or string
+                string jsonData = File.ReadAllText("data.json");
 
-                // 3.1. Create the Artist
-                var artist = new Artist
+                if (jsonData != null)
                 {
-                    Name = artistData["name"].ToString()
-                };
-                dbContext.Artists.Add(artist);
+                    // 2. Deserialize JSON into a list of dictionaries
+                    var musicData = JsonSerializer.Deserialize<List<Dictionary<string, object>>>(jsonData);
 
-                // 3.2. Process each album for this artist
-                var albumsJsonElement = artistData["albums"].ToString();
-                var albums = JsonSerializer.Deserialize<List<Dictionary<string, object>>>(albumsJsonElement);
-                if (albums == null)
-                {
-                    return;
-                }
-                foreach (var albumData in albums)
-                {
-                    var album = new Album
-                    {
-                        Title = albumData["title"].ToString(),
-                        Description = albumData["description"].ToString(),
-                        Artist = artist
-                    };
-                    dbContext.Albums.Add(album);
-
-                    // 3.3. Process each song for this album
-                    var songsJsonElement = albumData["songs"].ToString();
-                    var songs = JsonSerializer.Deserialize<List<Dictionary<string, object>>>(songsJsonElement);
-                    if (songs == null)
+                    // 3. Process each artist's data
+                    if (musicData == null)
                     {
                         return;
                     }
-                    foreach (var songData in songs)
+                    foreach (var artistData in musicData)
                     {
-                        var song = new Song
+
+                        // 3.1. Create the Artist
+                        var artist = new Artist
                         {
-                            Title = songData["title"].ToString(),
-                            Length = songData["length"].ToString(), // Helper for length parsing
-                            Album = album,
-                            Artist = artist
+                            Name = artistData["name"].ToString()
                         };
-                        dbContext.Songs.Add(song);
+                        dbContext.Artists.Add(artist);
+
+                        // 3.2. Process each album for this artist
+                        var albumsJsonElement = artistData["albums"].ToString();
+                        if (albumsJsonElement == null)
+                        {
+                            return;
+                        }
+                        var albums = JsonSerializer.Deserialize<List<Dictionary<string, object>>>(albumsJsonElement);
+                        if (albums == null)
+                        {
+                            return;
+                        }
+                        foreach (var albumData in albums)
+                        {
+                            var album = new Album
+                            {
+                                Title = albumData["title"].ToString(),
+                                Description = albumData["description"].ToString(),
+                                ArtistId = artist.ArtistId,
+                            };
+                            dbContext.Albums.Add(album);
+
+                            // 3.3. Process each song for this album
+                            var songsJsonElement = albumData["songs"].ToString();
+                            if (songsJsonElement == null)
+                            {
+                                return;
+                            }
+                            var songs = JsonSerializer.Deserialize<List<Dictionary<string, object>>>(songsJsonElement);
+                            if (songs == null)
+                            {
+                                return;
+                            }
+                            foreach (var songData in songs)
+                            {
+                                var song = new Song
+                                {
+                                    Title = songData["title"].ToString(),
+                                    Length = songData["length"].ToString(), // Helper for length parsing
+                                    AlbumId = album.AlbumId,
+
+                                };
+                                dbContext.Songs.Add(song);
+                            }
+                        }
                     }
+
+                    // 4. Save changes to the database
+                    await dbContext.SaveChangesAsync();
                 }
+
             }
-
-            // 4. Save changes to the database
-            await dbContext.SaveChangesAsync();
         }
-    }
-        
 
+    }
 }

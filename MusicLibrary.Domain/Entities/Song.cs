@@ -1,7 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace MusicLibrary.Domain.Entities;
+﻿namespace MusicLibrary.Domain.Entities;
 
 public class Song
 {
@@ -9,11 +6,7 @@ public class Song
     public string Title { get; set; } = default!;
     public string Length { get; set; } = default!;
 
-    public Guid ArtistId { get; set; }
-    public Artist Artist { get; set; }
+    public Guid AlbumId { get; set; }
+    public Album Album { get; set; } = null!;
 
-   
-    public Guid? AlbumId { get; set; }
-    public Album Album { get; set; }
-    
 }

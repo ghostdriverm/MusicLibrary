@@ -30,7 +30,7 @@ namespace MusicLibrary.Infrastructure.Migrations
                     AlbumId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ArtistId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                    ArtistId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -50,8 +50,7 @@ namespace MusicLibrary.Infrastructure.Migrations
                     SongId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Length = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ArtistId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    AlbumId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                    AlbumId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -60,12 +59,7 @@ namespace MusicLibrary.Infrastructure.Migrations
                         name: "FK_Songs_Albums_AlbumId",
                         column: x => x.AlbumId,
                         principalTable: "Albums",
-                        principalColumn: "AlbumId");
-                    table.ForeignKey(
-                        name: "FK_Songs_Artists_ArtistId",
-                        column: x => x.ArtistId,
-                        principalTable: "Artists",
-                        principalColumn: "ArtistId",
+                        principalColumn: "AlbumId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -78,11 +72,6 @@ namespace MusicLibrary.Infrastructure.Migrations
                 name: "IX_Songs_AlbumId",
                 table: "Songs",
                 column: "AlbumId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Songs_ArtistId",
-                table: "Songs",
-                column: "ArtistId");
         }
 
         /// <inheritdoc />

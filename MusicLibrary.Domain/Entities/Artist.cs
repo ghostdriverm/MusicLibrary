@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace MusicLibrary.Domain.Entities;
+﻿namespace MusicLibrary.Domain.Entities;
 
 public class Artist
 {
@@ -8,5 +6,5 @@ public class Artist
     public string Name { get; set; } = default!;
 
     public ICollection<Album> Albums { get; set; } = new List<Album>();
-    public ICollection<Song> Songs { get; set; } = new List<Song>();
+
 }

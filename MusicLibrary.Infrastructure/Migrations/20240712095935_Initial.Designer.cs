@@ -12,7 +12,7 @@ using MusicLibrary.Infrastructure.Persistence;
 namespace MusicLibrary.Infrastructure.Migrations
 {
     [DbContext(typeof(MusicLibraryDbContext))]
-    [Migration("20240710172224_Initial")]
+    [Migration("20240712095935_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -27,11 +27,11 @@ namespace MusicLibrary.Infrastructure.Migrations
 
             modelBuilder.Entity("MusicLibrary.Domain.Entities.Album", b =>
                 {
-                    b.Property<Guid?>("AlbumId")
+                    b.Property<Guid>("AlbumId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("ArtistId")
+                    b.Property<Guid>("ArtistId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
@@ -70,10 +70,7 @@ namespace MusicLibrary.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("AlbumId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ArtistId")
+                    b.Property<Guid>("AlbumId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Length")
@@ -88,8 +85,6 @@ namespace MusicLibrary.Infrastructure.Migrations
 
                     b.HasIndex("AlbumId");
 
-                    b.HasIndex("ArtistId");
-
                     b.ToTable("Songs");
                 });
 
@@ -98,7 +93,8 @@ namespace MusicLibrary.Infrastructure.Migrations
                     b.HasOne("MusicLibrary.Domain.Entities.Artist", "Artist")
                         .WithMany("Albums")
                         .HasForeignKey("ArtistId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Artist");
                 });
@@ -107,17 +103,11 @@ namespace MusicLibrary.Infrastructure.Migrations
                 {
                     b.HasOne("MusicLibrary.Domain.Entities.Album", "Album")
                         .WithMany("Songs")
-                        .HasForeignKey("AlbumId");
-
-                    b.HasOne("MusicLibrary.Domain.Entities.Artist", "Artist")
-                        .WithMany("Songs")
-                        .HasForeignKey("ArtistId")
+                        .HasForeignKey("AlbumId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Album");
-
-                    b.Navigation("Artist");
                 });
 
             modelBuilder.Entity("MusicLibrary.Domain.Entities.Album", b =>
@@ -128,8 +118,6 @@ namespace MusicLibrary.Infrastructure.Migrations
             modelBuilder.Entity("MusicLibrary.Domain.Entities.Artist", b =>
                 {
                     b.Navigation("Albums");
-
-                    b.Navigation("Songs");
                 });
 #pragma warning restore 612, 618
         }

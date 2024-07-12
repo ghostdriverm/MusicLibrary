@@ -19,16 +19,11 @@ internal class MusicLibraryDbContext(DbContextOptions<MusicLibraryDbContext> opt
             .HasForeignKey(a => a.ArtistId)
             .OnDelete(DeleteBehavior.Cascade);
 
-        modelBuilder.Entity<Artist>()
-            .HasMany(a => a.Songs)
-            .WithOne(s => s.Artist)
-            .HasForeignKey(s => s.ArtistId)
-            .OnDelete(DeleteBehavior.Cascade);
-
         modelBuilder.Entity<Album>()
             .HasMany(a => a.Songs)
             .WithOne(s => s.Album)
-            .HasForeignKey(s => s.AlbumId);
+            .HasForeignKey(s => s.AlbumId)
+            .OnDelete(DeleteBehavior.Cascade);
 
         base.OnModelCreating(modelBuilder);
     }
