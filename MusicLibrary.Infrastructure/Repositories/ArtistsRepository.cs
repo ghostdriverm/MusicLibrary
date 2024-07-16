@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 using MusicLibrary.Domain.Constants;
 using MusicLibrary.Domain.Entities;
 using MusicLibrary.Domain.Repositories;
@@ -52,11 +53,17 @@ internal class ArtistsRepository(MusicLibraryDbContext dbContext) : IArtistsRepo
         return artist;
     }
 
+    public async Task<Artist?> GetByNameAsync(string name)
+    {
+        return await dbContext.Artists.Include(a => a.Albums).FirstOrDefaultAsync(a => a.Name == name);
+    }
+
     public Task SaveChanges() => dbContext.SaveChangesAsync();
 
-    public async Task Update(Artist artist)
+    public async Task UpdateAsync(Artist artist)
     {
-        dbContext.Artists.Remove(artist);
+
+        dbContext.Artists.Update(artist);
         await dbContext.SaveChangesAsync();
     }
 

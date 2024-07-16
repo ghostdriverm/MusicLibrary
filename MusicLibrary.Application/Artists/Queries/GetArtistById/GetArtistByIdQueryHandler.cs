@@ -11,7 +11,10 @@ public class GetArtistByIdQueryHandler(IArtistsRepository artistsRepository, IMa
     {
         var artist = await artistsRepository.GetByIdAsync(request.ArtistId);
 
-        if (artist == null) throw new Exception("Artist not found.");
+        if (artist == null)
+        {
+            throw new Exception("Artist not found.");
+        }
 
         var artistDto = mapper.Map<ArtistDto>(artist);
 

@@ -10,7 +10,10 @@ public class GetSongsForArtistQueryHandler(IArtistsRepository artistsRepository,
     public async Task<IEnumerable<SongDto>> Handle(GetSongsForArtistQuery request, CancellationToken cancellationToken)
     {
         var artist = await artistsRepository.GetByIdAsync(request.ArtistId);
-        if (artist == null) throw new Exception("Artist not found.");
+        if (artist == null)
+        {
+            throw new Exception("Artist not found.");
+        }
 
         var allSongs = await songsRepository.GetAllByArtistAsync(request.ArtistId);
 

@@ -9,8 +9,10 @@ public class DeleteAlbumsForArtistCommandHandler(IArtistsRepository artistsRepos
     {
         var artist = await artistsRepository.GetByIdAsync(command.ArtistId);
 
-        if (artist == null) throw new Exception("Artist not found.");
-
+        if (artist == null)
+        {
+            throw new Exception("Artist not found.");
+        }
         await albumsRepository.DeleteAll(artist.Albums);
     }
 }

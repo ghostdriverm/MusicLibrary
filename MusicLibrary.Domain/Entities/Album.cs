@@ -10,5 +10,4 @@ public class Album
     public Artist Artist { get; set; } = null!;
 
     public ICollection<Song> Songs { get; set; } = new List<Song>();
-
 }

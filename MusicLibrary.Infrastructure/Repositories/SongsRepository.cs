@@ -31,7 +31,8 @@ internal class SongsRepository(MusicLibraryDbContext dbContext) : ISongsReposito
     public async Task<IEnumerable<Song>> GetAllAsync()
     {
         return await dbContext.Songs
-            .Include(a => a.Album)
+            .Include(s => s.Album)
+            .ThenInclude(a => a.Artist)
             .ToListAsync();
     }
 

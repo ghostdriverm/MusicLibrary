@@ -10,7 +10,7 @@ try
 
     // Add services to the container.
 
-    builder.Services.AddControllers();
+    //builder.Services.AddControllers();
     builder.AddPresentation();
     builder.Services.AddAplication();
 

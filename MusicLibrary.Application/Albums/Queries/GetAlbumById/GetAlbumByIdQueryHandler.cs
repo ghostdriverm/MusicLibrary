@@ -11,8 +11,10 @@ public class GetAlbumByIdQueryHandler(IAlbumsRepository albumsRepository, IMappe
     {
         var album = await albumsRepository.GetByIdAsync(request.AlbumId);
 
-        if (album == null) throw new Exception("Album not found");
-
+        if (album == null)
+        {
+            throw new Exception("Album not found");
+        }
         var albumDto = mapper.Map<AlbumDto>(album);
         return albumDto;
     }

@@ -19,6 +19,14 @@ public class AlbumsProfile : Profile
             .ForMember(dest => dest.Title, opt => opt.MapFrom(src => src.Title))
             .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Description))
             .ForMember(dest => dest.ArtistId, opt => opt.MapFrom(src => src.ArtistId))
+            .ForMember(dest => dest.ArtistName, opt => opt.MapFrom(src => src.Artist.Name))
             .ForMember(dest => dest.Songs, opt => opt.MapFrom(src => src.Songs));
+
+        CreateMap<Album, AlbumWithArtistDto>()
+            .ForMember(dest => dest.AlbumId, opt => opt.MapFrom(src =>src.AlbumId))
+            .ForMember(dest => dest.Title, opt => opt.MapFrom(src => src.Title))
+            .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Description))
+            .ForMember(dest => dest.ArtistId, opt => opt.MapFrom(src => src.ArtistId))
+            .ForMember(dest => dest.ArtistName, opt => opt.MapFrom(src => src.Artist.Name));
     }
 }

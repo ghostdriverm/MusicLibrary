@@ -46,7 +46,32 @@ export default defineConfig({
             '^/weatherforecast': {
                 target,
                 secure: false
-            }
+            },
+            '^/api/AlbumsAll': {
+                target,
+                secure: false
+            },
+            '^/api/AlbumOfTheDay': {
+                target,
+                secure: false
+            },
+            '^/api': {
+                target,
+                secure: false
+            },
+            //'^/weatherforecast': {
+            //    target,
+            //    secure: false
+            //},
+            //'^/weatherforecast': {
+            //    target,
+            //    secure: false
+            //},
+            //'^/weatherforecast': {
+            //    target,
+            //    secure: false
+            //},
+
         },
         port: 5173,
         https: {

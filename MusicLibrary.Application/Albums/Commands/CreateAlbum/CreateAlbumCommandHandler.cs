@@ -12,7 +12,10 @@ public class CreateAlbumCommandHandler(IAlbumsRepository albumRepository,
     {
         var artist = await artistsRepository.GetByIdAsync(command.ArtistId);
 
-        if (artist == null) throw new Exception("Artist not found!");
+        if (artist == null)
+        {
+            throw new Exception("Artist not found!");
+        }
 
         var album = new Album
         {

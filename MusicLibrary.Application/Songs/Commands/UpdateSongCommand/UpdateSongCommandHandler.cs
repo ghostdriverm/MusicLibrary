@@ -9,7 +9,10 @@ public class UpdateSongCommandHandler(ISongsRepository songsRepository) : IReque
     {
         var song = await songsRepository.GetByIdAsync(command.SongId);
 
-        if (song == null) throw new Exception("Song not found");
+        if (song == null)
+        {
+            throw new Exception("Song not found");
+        }
 
         song.Title = command.Title;
         song.Length = command.Length;

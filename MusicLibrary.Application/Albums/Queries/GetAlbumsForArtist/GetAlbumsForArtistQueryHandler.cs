@@ -11,8 +11,10 @@ public class GetAlbumsForArtistQueryHandler(IArtistsRepository artistsRepository
     {
         var artist = await artistsRepository.GetByIdAsync(request.ArtistId);
 
-        if (artist == null) throw new Exception("Artist not found");
-
+        if (artist == null)
+        {
+            throw new Exception("Artist not found");
+        }
         var albums = await albumsRepository.GetAllByArtistAsync(request.ArtistId);
 
         var results = mapper.Map<IEnumerable<AlbumDto>>(albums);

@@ -23,5 +23,15 @@ public class SongsProfile : Profile
             .ForMember(dest => dest.Length, opt => opt.MapFrom(src => src.Length))
             .ForMember(dest => dest.AlbumId, opt => opt.MapFrom(src => src.AlbumId))
             .ForMember(dest => dest.ArtistId, opt => opt.MapFrom(src => src.Album.ArtistId));
+
+        CreateMap<Song, SongWithArtistAndAlbumDto>()
+            .ForMember(dest => dest.SongId, opt => opt.MapFrom(src => src.SongId))
+            .ForMember(dest => dest.Title, opt => opt.MapFrom(src => src.Title))
+            .ForMember(dest => dest.Length, opt => opt.MapFrom(src => src.Length))
+            .ForMember(dest => dest.AlbumId, opt => opt.MapFrom(src => src.AlbumId))
+            .ForMember(dest => dest.AlbumName, opt => opt.MapFrom(src => src.Album.Title))
+            .ForMember(dest => dest.ArtistId, opt => opt.MapFrom(src => src.Album.ArtistId))
+            .ForMember(dest => dest.ArtistName, opt => opt.MapFrom(src => src.Album.Artist.Name));
+
     }
 }

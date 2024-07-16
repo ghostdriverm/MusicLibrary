@@ -43,10 +43,28 @@ internal class AlbumsRepository(MusicLibraryDbContext dbContext) : IAlbumsReposi
             .Include(a => a.Songs)
             .FirstOrDefaultAsync(a => a.AlbumId == albumId);
 
-        if (album == null) throw new Exception($"Album with ID {albumId} not found.");
+        if (album == null)
+        {
+            throw new Exception($"Album with ID {albumId} not found.");
+        }
+
         return album;
     }
 
+    public async Task<Album> GetAlbumOfTheDay()
+    {
+        var randomAlbum = await dbContext.Albums
+            .OrderBy(x => Guid.NewGuid()) // order randomly
+            .FirstOrDefaultAsync();
+
+        return randomAlbum;
+    }
+
+    public async Task UpdateAsync(IEnumerable<Album> albums)
+    {
+        dbContext.Albums.UpdateRange(albums);
+        await dbContext.SaveChangesAsync();
+    }
 
     public Task SaveChanges() => dbContext.SaveChangesAsync();
 }

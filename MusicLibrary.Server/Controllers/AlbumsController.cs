@@ -6,6 +6,7 @@ using MusicLibrary.Application.Albums.Commands.DeleteAlbums;
 using MusicLibrary.Application.Albums.Commands.UpdateAlbum;
 using MusicLibrary.Application.Albums.Dtos;
 using MusicLibrary.Application.Albums.Queries.GetAlbumByIdForArtist;
+using MusicLibrary.Application.Albums.Queries.GetAlbumOfTheDay;
 using MusicLibrary.Application.Albums.Queries.GetAlbumsForArtist;
 namespace MusicLibrary.WebAPI.Controllers;
 

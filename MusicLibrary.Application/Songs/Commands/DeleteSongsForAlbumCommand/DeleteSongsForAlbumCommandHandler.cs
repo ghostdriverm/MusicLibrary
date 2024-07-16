@@ -9,7 +9,10 @@ public class DeleteSongsForAlbumCommandHandler(IAlbumsRepository albumsRepositor
     {
         var album = await albumsRepository.GetByIdAsync(command.AlbumId);
 
-        if (album == null) throw new Exception("Album not found.");
+        if (album == null)
+        {
+            throw new Exception("Album not found.");
+        }
 
         await songsRepository.DeleteAll(album.Songs);
     }

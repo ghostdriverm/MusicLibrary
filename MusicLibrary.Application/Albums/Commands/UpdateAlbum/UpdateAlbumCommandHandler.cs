@@ -10,8 +10,10 @@ public class UpdateAlbumCommandHandler(IAlbumsRepository albumRepository) : IReq
     {
         var album = await albumRepository.GetByIdAsync(command.AlbumId);
 
-        if (album == null) throw new Exception("Album not found!");
-
+        if (album == null)
+        {
+            throw new Exception("Album not found!");
+        }
         album.Title = command.Title;
         album.Description = command.Description;
 
