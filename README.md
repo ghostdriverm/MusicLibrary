@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/268fbe8c-5a29-48f0-aa2a-f7743f6b25b9)# MusicLibrary
+# MusicLibrary
 
 This is a .NET 8.0 web API with a React frontend application for managing a digital album collection, following the principles of Clean Architecture.
 
