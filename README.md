@@ -4,7 +4,7 @@ This is a .NET 8.0 web API with a React frontend application for managing a digi
 
 ##Project Structure
 
-- `src/MusicLibrary.WebAPI`: The main API project. This is the entry point of the application.
+- `src/MusicLibrary.WebAPI` `*(.Server on GitHub)*`: The main API project. This is the entry point of the application.
 - `src/MusicLibrary.Application`: Contains the application logic. This layer is responsible for the application's behavior and policies.
 - `src/MusicLibrary.Domain`: Contains enterprise logic and types. This is the core layer of the application.
 - `src/MusicLibrary.Infrastructure`: Contains infrastructure-related code such as database and file system interactions. This layer supports the higher layers.
