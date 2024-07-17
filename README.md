@@ -53,8 +53,8 @@ To run the project, set `MusicLibrary.WebAPI` and `MusicLibrary.client` as the s
    - The database is structured as in the image:
 ![image](https://github.com/user-attachments/assets/dd1880a7-6ceb-4c2f-b94e-b7e622e0de3c)
 
-   - A artist can have many albums.
-   - A album can have only one artist.
+   - An artist can have many albums.
+   - An album can have only one artist.
    - An album can have many songs.
    - A song can have only one album.
      
