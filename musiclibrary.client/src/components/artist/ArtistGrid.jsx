@@ -3,7 +3,9 @@ import ArtistGridComponent from './ArtistGridComponent';
 
 const ArtistGrid = ({ artists, onEdit, onDelete, onAdd }) => (
     <div className="artist-grid">
-        <button onClick={() => onAdd(prompt('Enter artist name:'))}>Add Artist</button>
+        <div className="button-grid">
+            <button onClick={() => onAdd(prompt('Enter artist name:'))}>Add Artist</button>
+        </div>
         {artists.map((artist) => (
             <ArtistGridComponent
                 key={artist.artistId}
@@ -12,6 +14,7 @@ const ArtistGrid = ({ artists, onEdit, onDelete, onAdd }) => (
                 onDelete={onDelete}
             />
         ))}
+
     </div>
 );
 

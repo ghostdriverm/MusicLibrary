@@ -42,7 +42,6 @@ const songsService = {
     },
 
     createSong: async (artistId, albumId, songData) => {
-        console.log(JSON.stringify(songData));
         try {
             const response = await fetch(`${API_BASE_URL}/${artistId}/albums/${albumId}/songs`, {
                 method: 'POST',
@@ -91,7 +90,6 @@ const songsService = {
                 },
                 body: JSON.stringify(songData),
             });
-            console.log(response);
             if (!response.ok) {
                 throw new Error(`Failed to update song with ID ${songId}`);
             }
@@ -112,9 +110,12 @@ const songsService = {
             if (!response.ok) {
                 throw new Error(`Failed to delete song with ID ${songId}`);
             }
-            const albumInfo = await fetch(`${API_BASE_URL}/${artistId}/albums/${albumId}`);
-            console.log("Album info", albumInfo);
-            return albumInfo;
+            const updatedAlbumResponse = await fetch(`${API_BASE_URL}/${artistId}/albums/${albumId}`);
+            if (!updatedAlbumResponse.ok) {
+                throw new Error('Failed to fetch updated album info');
+            }
+            const updatedAlbumInfo = await updatedAlbumResponse.json();
+            return updatedAlbumInfo;
         } catch (error) {
             console.error(`Error deleting song with ID ${songId}:`, error);
             throw error;
@@ -122,7 +123,6 @@ const songsService = {
     },
 
     deleteAllSongs: async (artistId, albumId) => {
-        console.log(artistId, albumId);
         try {
             const response = await fetch(`${API_BASE_URL}/${artistId}/albums/${albumId}/songs/delete`, {
                 method: 'DELETE',
@@ -134,7 +134,6 @@ const songsService = {
                 throw new Error(`Failed to delete songs for album Id ${albumId}`);
             }
             const albumInfo = await fetch(`${API_BASE_URL}/${artistId}/albums/${albumId}`);
-            console.log(albumInfo);
             return albumInfo;
         } catch (error) {
             console.error(`Error deleting songs for album ID ${albumId}:`, error);

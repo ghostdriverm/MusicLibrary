@@ -21,29 +21,44 @@ const Song = ({ song, onEdit, onDelete }) => {
     };
 
     return (
-        <div>
+        <div className="song-grid-component">
             {editMode ? (
-                <div>
-                    <input
-                        type="text"
-                        value={newTitle}
-                        onChange={(e) => setNewTitle(e.target.value)}
-                    />
-                    <input
-                        type="text"
-                        value={newLength}
-                        onChange={(e) => setNewLength(e.target.value)}
-                    />
-                    <button onClick={handleSave}>Save</button>
-                    <button onClick={handleCancel}>Cancel</button>
-                </div>
+                <>
+                    <div>
+
+                        <input
+                            type="text"
+                            value={newTitle}
+                            onChange={(e) => setNewTitle(e.target.value)}
+                            reqiored
+                        />
+                    </div>
+                    <div>
+                        <input
+                            type="text"
+                            value={newLength}
+                            onChange={(e) => setNewLength(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div>
+                        <button onClick={handleSave}>Save</button>
+                        <button onClick={handleCancel}>Cancel</button>
+                    </div >
+                </>
             ) : (
-                <div>
-                    <p>Title: {song.title}</p>
-                    <p>Length: {song.length}</p>
-                    <button onClick={() => setEditMode(true)}>Edit</button>
-                    <button onClick={handleDelete}>Delete</button>
-                </div>
+                <>
+                    <div>
+                        <p>{song.title}</p>
+                    </div>
+                    <div>
+                        <p>Length: {song.length}</p>
+                    </div>
+                    <div>
+                        <button onClick={() => setEditMode(true)}>Edit</button>
+                        <button onClick={handleDelete}>Delete</button>
+                    </div>
+                </>
             )}
         </div>
     );

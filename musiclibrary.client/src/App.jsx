@@ -31,7 +31,7 @@ function App() {
 
         // Fetch album of the day initially and then every 1 minute
         fetchAlbumOfTheDay();
-        //const interval = setInterval(fetchAlbumOfTheDay, 60000); // 60000 ms = 1 minute as demonstration purposes
+        //const interval = setInterval(fetchAlbumOfTheDay, 60000); // 60000 ms = 1 minute for demonstration purposes
 
         //return () => clearInterval(interval); // Clean up interval on component unmount
     }, []);

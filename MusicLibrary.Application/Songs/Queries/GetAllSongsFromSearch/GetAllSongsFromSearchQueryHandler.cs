@@ -6,6 +6,7 @@ using MusicLibrary.Domain.Repositories;
 
 namespace MusicLibrary.Application.Songs.Queries.GetAllSongs;
 
+//implemented but not used in the final project
 public class GetAllSongsFromSearchQueryHandler(IMapper mapper, ISongsRepository songsRepository) : IRequestHandler<GetAllSongsFromSearchQuery, PagedResult<SongDto>>
 {
     public async Task<PagedResult<SongDto>> Handle(GetAllSongsFromSearchQuery request, CancellationToken cancellationToken)

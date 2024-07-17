@@ -2,6 +2,7 @@
 
 namespace MusicLibrary.WebAPI.Services;
 
+//implemented but not used in the final project
 public class WeatherForecastService : IWeatherForecastService
 {
     private static readonly string[] Summaries = new[]

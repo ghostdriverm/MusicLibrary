@@ -1,5 +1,6 @@
 ﻿namespace MusicLibrary.Application.Common;
 
+//implemented but not used in the final project
 public class PagedResult<T>
 {
     public PagedResult(IEnumerable<T> items, int totalCount, int pageSize, int pageNumber)

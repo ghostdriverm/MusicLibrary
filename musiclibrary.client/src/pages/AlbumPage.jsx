@@ -57,7 +57,6 @@ const AlbumPage = ({ albumOfTheDay, setAlbumOfTheDay }) => {
     const handleDeleteSong = async (songId) => {
         try {
             const updatedAlbum = await songsService.deleteSong(artistId, albumId, songId);
-            console.
             setAlbumInfo(updatedAlbum);
         } catch (err) {
             setError(err.message);

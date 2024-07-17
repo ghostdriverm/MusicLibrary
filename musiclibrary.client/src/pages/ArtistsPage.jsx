@@ -65,11 +65,13 @@ const ArtistsPage = ({ albumOfTheDay, setAlbumOfTheDay }) => {
             }
         } catch (err) {
             console.error('Error updating artist name:', err);
-            // Handle error if needed
         }
     };
 
     const handleDeleteArtist = async (artistId) => {
+        if (!window.confirm('Are you sure you want to delete this artist?')) {
+            return;
+        }
         try {
             const response = await artistsService.deleteArtist({ artistId });
             if (response.success) {
@@ -84,11 +86,15 @@ const ArtistsPage = ({ albumOfTheDay, setAlbumOfTheDay }) => {
             }
         } catch (err) {
             console.error('Error deleting artist:', err);
-            // Handle error if needed
         }
     };
 
     const handleAddArtist = async (artistName) => {
+        if (artistName.trim() === '') {
+            alert('Artist name cannot be empty.');
+            return;
+        }
+
         try {
             const response = await artistsService.createArtist({ name: artistName });
             if (response.success) {
@@ -114,6 +120,7 @@ const ArtistsPage = ({ albumOfTheDay, setAlbumOfTheDay }) => {
                 onDelete={handleDeleteArtist}
                 onAdd={handleAddArtist}
             />
+            <div className="button-grid">
             <button
                 onClick={handleLoadMore}
                 disabled={allArtistsLoaded}
@@ -123,7 +130,8 @@ const ArtistsPage = ({ albumOfTheDay, setAlbumOfTheDay }) => {
                 }}
             >
                 {allArtistsLoaded ? 'No More Artists' : 'Load More'}
-            </button>
+                </button>
+            </div>
         </div>
     );
 };

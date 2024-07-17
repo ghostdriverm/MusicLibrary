@@ -28,7 +28,7 @@ internal class ArtistsRepository(MusicLibraryDbContext dbContext) : IArtistsRepo
         return await dbContext.Artists.ToListAsync();
 
     }
-
+    //not used in the final project even though it should
     public Task<(IEnumerable<Artist>, Guid)> GetAllMatchingAsync(string? searchPhrase, int pageSize, int pageNumber, string? sortBy, SortDirection sortDirection)
     {
         //var searchPhraseLower = searchPhrase?.ToLower();

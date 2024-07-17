@@ -22,23 +22,47 @@ const ArtistGridComponent = ({ artist, onEdit, onDelete }) => {
 
     return (
         <div className="artist-grid-component">
-            <h2><Link to={`/artists/${artist.artistId}`}>{artist.name}</Link></h2>
-            <div className="buttons">
-            {editMode ? (
-                <div>
-                    <input
-                        type="text"
-                        value={newArtistName}
-                        onChange={(e) => setNewArtistName(e.target.value)}
-                    />
-                    <button onClick={handleSaveEdit}>Save</button>
-                    <button onClick={handleCancelEdit}>Cancel</button>
-                </div>
-            ) : (
-                <button onClick={handleEditClick}>Edit Artist Name</button>
-            )}
-            <button onClick={() => onDelete(artist.artistId)}>Delete Artist</button>
+            <div className="artist-link">
+                <h2><Link to={`/artists/${artist.artistId}`}>{artist.name}</Link></h2>
             </div>
+
+            {editMode ? (
+                <>
+                    <div className="edit">
+                        <div>
+                            <input
+                                className="input-field"
+                                type="text"
+                                value={newArtistName}
+                                onChange={(e) => setNewArtistName(e.target.value)}
+                                required
+                            />
+                        </div>
+                    </div>
+
+                    <div className="buttons">
+                        <div className="button">
+                            <button onClick={handleSaveEdit}>Save</button>
+                        </div>
+                        <div className="button">
+                            <button onClick={handleCancelEdit}>Cancel</button>
+                        </div>
+                    </div>
+                </>
+            ) : (
+                <>
+                        <div className="edit">
+                        </div>
+                        <div className="buttons">
+                    <div className="button">
+                                <button onClick={handleEditClick}>Edit Artist Name</button>
+                            </div>
+                            <div className="button">
+                                <button onClick={() => onDelete(artist.artistId)}>Delete Artist</button>
+                            </div>
+                    </div>
+                </>
+            )}
         </div>
     );
 };

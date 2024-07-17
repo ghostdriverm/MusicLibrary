@@ -14,7 +14,6 @@ th, td {
 
 .navigation {
     width: 100%;
-    border: 1px solid red;
     position: -webkit-sticky; /* Safari */
     position: sticky;
     top: 0;
@@ -39,19 +38,23 @@ th, td {
 
 .search-box {
     width: 60%;
+    color: white;
 }
+
+    .search-box > span {
+        color: lightgray;
+    }
+
 .navigation-item, .navigation-title {
     padding: 1.5rem;
 }
 
 .page {
-    border: 1px solid red;
     display: flex;
     flex-direction: column;
 }
 
 .album-of-the-day {
-    border: 1px solid red;
     min-height: 400px;
     height: 100%;
 }
@@ -60,12 +63,12 @@ th, td {
     padding: 1.5rem;
     text-align: justify;
     margin: 0.5rem;
-    border: 1px solid blue;
 }
 
 .album-3d {
-    height: 60%;
-    border: 1px solid blue;
+    min-height: 400px;
+    height: 500px;
+    width: 100%;
 }
 
 .featured-artists {
@@ -127,8 +130,6 @@ th, td {
     }
 
 .artist-grid {
-    height: 80vh;
-    display: grid;
     grid-template-columns: repeat(auto-fit, 1fr);
 }
 
@@ -147,6 +148,142 @@ th, td {
     -webkit-backdrop-filter: blur(15.2px);
 }
 
+.artist-grid-component-centered {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 1rem;
+    margin: 1rem;
+    justify-content: center;
+    background: rgba(70, 70, 70, 0.8);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(15.2px);
+    -webkit-backdrop-filter: blur(15.2px);
+    font-size: 2rem;
+}
+
+.artist-grid-component-item {
+    margin: 2rem 0;
+    font-size: 2rem;
+    font-weight: bolder;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+.button-grid {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 1rem;
+    margin: 1rem;
+    justify-content: center;
+}
+
 .buttons {
     margin: 0 2rem;
+    display: flex;
+    justify-content: space-around;
+}
+
+.button {
+    margin: 0 1rem;
+}
+
+.artist-link {
+    margin: 0 1rem;
+}
+
+.artist {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.input-field {
+    height: 2rem;
+    margin: 0 1rem;
+    color: white;
+}
+
+#add-album-form input{
+    height: 2rem;
+    margin: 0 1rem;
+    color: white;
+
+}
+.MuiFormLabel-root {
+    color: white;
+}
+
+.MuiAutocomplete-input::placeholder {
+    color: white;
+}
+.MuiAutocomplete-inputFocused::placeholder {
+    color:white;
+}
+.MuiAutocomplete-inputRoot {
+    color: white;
+}
+#add-album-form input::placeholder {
+    color: lightgray;
+}
+
+.album-component {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.album-component-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+.song-grid {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.song-grid-component {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 1rem;
+    margin: 1rem;
+    justify-content: space-around;
+    background: rgba(70, 70, 70, 0.8);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(15.2px);
+    -webkit-backdrop-filter: blur(15.2px);
+}
+
+.song-grid-component > div {
+    flex: 1 1 0px;
+}
+
+.song-submit {
+    margin-left: 6rem;
+}
+
+.add-song-form {
+    display: flex;
+}
+
+.add-song-form input {
+    height: 2rem;
+    margin: 0 1rem;
+    color: white;
 }

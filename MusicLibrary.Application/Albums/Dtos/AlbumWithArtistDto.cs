@@ -1,7 +1,4 @@
-﻿
-using MusicLibrary.Application.Songs.Dtos;
-
-namespace MusicLibrary.Application.Albums.Dtos;
+﻿namespace MusicLibrary.Application.Albums.Dtos;
 
 public class AlbumWithArtistDto
 {

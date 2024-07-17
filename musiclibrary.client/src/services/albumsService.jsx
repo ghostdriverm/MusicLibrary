@@ -55,7 +55,6 @@ const albumsService = {
     },
 
     createAlbum: async (artistId, albumData) => {
-        console.log(JSON.stringify(albumData));
         try {
             const response = await fetch(`${API_BASE_URL}/${artistId}/albums`, {
                 method: 'POST',

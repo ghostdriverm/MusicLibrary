@@ -56,7 +56,10 @@ internal class AlbumsRepository(MusicLibraryDbContext dbContext) : IAlbumsReposi
         var randomAlbum = await dbContext.Albums
             .OrderBy(x => Guid.NewGuid()) // order randomly
             .FirstOrDefaultAsync();
-
+        if (randomAlbum == null)
+        {
+            throw new Exception("Album of the day not found.");
+        }
         return randomAlbum;
     }
 

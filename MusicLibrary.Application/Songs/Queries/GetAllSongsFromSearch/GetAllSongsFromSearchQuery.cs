@@ -5,6 +5,7 @@ using MusicLibrary.Domain.Constants;
 
 namespace MusicLibrary.Application.Songs.Queries.GetAllSongs;
 
+//implemented but not used in the final project
 public class GetAllSongsFromSearchQuery : IRequest<PagedResult<SongDto>>
 {
     public string? SearchPhrase { get; set; }
